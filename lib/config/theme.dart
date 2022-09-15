@@ -24,8 +24,8 @@ class AppTheme with ChangeNotifier {
   static ThemeData get darkTheme {
     return ThemeData(
       primarySwatch: Colors.blue,
-      backgroundColor: AppColors.black,
-      scaffoldBackgroundColor: AppColors.black,
+      backgroundColor: AppColors.titleActive,
+      scaffoldBackgroundColor: AppColors.titleActive,
       brightness: Brightness.dark,
     );
   }

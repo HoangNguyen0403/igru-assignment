@@ -1,0 +1,34 @@
+[
+    {
+      "name": "Polo shirt",
+      "price": 12.4,
+      "imageUrl": "fake-url",
+      "description": "Fake description",
+      "selected": false,
+      "productType": "tshirt"
+    },
+    {
+      "name": "Dress for lady",
+      "price": 128.4,
+      "imageUrl": "fake-url",
+      "description": "Fake description",
+      "selected": false,
+      "productType": "dress"
+    },
+    {
+      "name": "Supermer bag",
+      "price": 12.4,
+      "imageUrl": "fake-url",
+      "description": "Fake description",
+      "selected": false,
+      "productType": "bag"
+    },
+    {
+      "name": "Short Jean",
+      "price": 12.4,
+      "imageUrl": "fake-url",
+      "description": "Fake description",
+      "selected": false,
+      "productType": "apparel"
+    }
+  ]

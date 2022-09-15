@@ -4,48 +4,52 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 
 class AppTextStyle {
-  static TextStyle get label1 {
-    return TextStyle(
-      fontSize: 40.sp,
-    );
-  }
-
-  static TextStyle get label2 {
-    return TextStyle(
-      fontSize: 36.sp,
-    );
-  }
-
-  static TextStyle get label3 {
-    return TextStyle(
-      fontSize: 30.sp,
-      fontWeight: FontWeight.w200,
-    );
-  }
-
-  static TextStyle get label4 {
-    return TextStyle(
-      fontSize: 24.sp,
-      fontWeight: FontWeight.w200,
-    );
-  }
-
-  static TextStyle get label5 {
+  static TextStyle get title {
     return TextStyle(
       fontSize: 18.sp,
+      color: AppColors.titleTextColor,
     );
   }
 
-  static TextStyle get label6 {
+  static TextStyle get bodyL {
     return TextStyle(
       fontSize: 16.sp,
+      color: AppColors.bodyTextColor,
     );
   }
 
-  static TextStyle get buttonLabel {
+  static TextStyle get bodyM {
     return TextStyle(
-      fontSize: 20.sp,
-      color: AppColors.blue,
+      fontSize: 14.sp,
+      color: AppColors.bodyTextColor,
+    );
+  }
+
+  static TextStyle get bodyS {
+    return TextStyle(
+      fontSize: 12.sp,
+      color: AppColors.bodyTextColor,
+    );
+  }
+
+  static TextStyle get price {
+    return TextStyle(
+      fontSize: 15.sp,
+      color: AppColors.primary,
+    );
+  }
+
+  static TextStyle get subTitle16 {
+    return TextStyle(
+      fontSize: 16.sp,
+      color: AppColors.titleTextColor,
+    );
+  }
+
+  static TextStyle get subTitle14 {
+    return TextStyle(
+      fontSize: 14.sp,
+      color: AppColors.titleTextColor,
     );
   }
 }

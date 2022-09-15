@@ -1,12 +1,18 @@
 import 'package:get_it/get_it.dart';
 
 import '../../config/theme.dart';
+import '../../repositories/products/product_repository.dart';
 import '../shared_pref_manager.dart';
 
 GetIt getIt = GetIt.instance;
 
 Future setupInjection() async {
   await _registerAppComponents();
+  registerRepository();
+}
+
+void registerRepository() {
+  getIt.registerSingleton(ProductRepository());
 }
 
 Future _registerAppComponents() async {
