@@ -51,7 +51,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(400, 800),
+      designSize: const Size(375, 800),
+      minTextAdapt: true,
       builder: (_, __) => MaterialApp(
         builder: (context, child) {
           return child ?? const SizedBox();

@@ -15,6 +15,7 @@ if hash fvm 2>/dev/null; then
     echo "${WARNING}Generated *.g.dart files not exits. Re-generate"
     dart pub global activate flutter_gen
     fvm flutter packages pub run build_runner build --delete-conflicting-outputs
+    fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/utils/multi-languages
     fvm flutter pub get
   fi
 
@@ -31,6 +32,7 @@ else
     echo "${WARNING}Generated *.g.dart files not exits. Re-generate"
     dart pub global activate flutter_gen
     flutter packages pub run build_runner build --delete-conflicting-outputs
+    flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/utils/multi-languages
     flutter pub get
   fi
 fi
