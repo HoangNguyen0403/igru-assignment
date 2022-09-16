@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+// Project imports:
 import '../../../../repositories/products/models/product.dart';
 import '../../../../repositories/products/product_repository.dart';
 import '../../model/category_model.dart';

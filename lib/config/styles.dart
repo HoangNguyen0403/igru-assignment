@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
+
+// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Project imports:
 import 'colors.dart';
 
 class AppTextStyle {

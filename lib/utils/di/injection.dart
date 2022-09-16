@@ -1,5 +1,7 @@
+// Package imports:
 import 'package:get_it/get_it.dart';
 
+// Project imports:
 import '../../config/theme.dart';
 import '../../repositories/products/product_repository.dart';
 import '../shared_pref_manager.dart';
