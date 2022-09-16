@@ -1,10 +1,25 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+// Project imports:
 import '../../../config/navigation_util.dart';
 
 class LoadingDialog {
   static void get hideLoadingDialog {
-    Navigator.of(NavigationUtil.currentContext!).pop();
+    if (_dialogIsVisible(NavigationUtil.currentContext!)) {
+      Navigator.of(NavigationUtil.currentContext!).pop();
+    }
+  }
+
+  static bool _dialogIsVisible(BuildContext context) {
+    bool isVisible = false;
+    Navigator.popUntil(context, (route) {
+      isVisible = route is PopupRoute;
+
+      return !isVisible;
+    });
+
+    return isVisible;
   }
 
   static void showLoadingDialog(BuildContext context) {
@@ -19,12 +34,14 @@ class LoadingDialog {
         ],
       ),
     );
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+    if (!_dialogIsVisible(context)) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
   }
 }

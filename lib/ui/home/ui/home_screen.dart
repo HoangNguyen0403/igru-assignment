@@ -1,13 +1,20 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Project imports:
+import '../../../config/colors.dart';
 import '../../../config/styles.dart';
+import '../../../gen/assets.gen.dart';
 import '../../../repositories/products/models/product.dart';
 import '../../../utils/multi-languages/multi_languages_utils.dart';
-import '../../../config/colors.dart';
-import '../../../gen/assets.gen.dart';
+import '../../../utils/route/app_routing.dart';
+import '../../common/widgets/common_appbar.dart';
+import '../../common/widgets/products_gridview.dart';
 import '../bloc/bloc/home_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum Category {
   all,
@@ -17,6 +24,12 @@ enum Category {
   bag,
 }
 
+extension CategoryExt on Category {
+  ProductType? get productTypeFilter {
+    return this == Category.all ? null : ProductType.values.byName(name);
+  }
+}
+
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -24,23 +37,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Category category = Category.all;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: Category.values.length,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.appBarBG,
-          title: Assets.images.logo.svg(),
-          centerTitle: true,
-          actions: [
-            Assets.icons.search.svg(),
-            Padding(
-              padding: EdgeInsets.only(right: 23.w, left: 16.w),
-              child: Assets.icons.shoppingBag.svg(),
-            ),
-          ],
-        ),
+        appBar: const CommonAppBar(),
         body: SizedBox(
           width: double.infinity,
           child: Column(
@@ -63,15 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )
                       .toList(),
-                  onTap: ((value) {
+                  onTap: ((index) {
+                    category = Category.values[index];
                     context.read<HomeBloc>().add(
-                          LoadProducts(
-                            productType: value == 0
-                                ? null
-                                : ProductType.values.byName(
-                                    Category.values[value].name,
-                                  ),
-                          ),
+                          LoadProducts(productType: category.productTypeFilter),
                         );
                   }),
                   labelStyle: AppTextStyle.subTitle14,
@@ -90,23 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   buildWhen: (_, current) => current is ProductLoaded,
                   builder: (context, state) {
                     if (state is ProductLoaded) {
-                      return GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 12.h,
-                          crossAxisSpacing: 12.w,
-                          mainAxisExtent: 240.h,
-                        ),
-                        itemCount: state.categoryModel.products.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            child: Container(
-                              color: AppColors.dark,
-                            ),
-                          );
-                        },
+                      return ProductGridView(
+                        products: state.categoryModel.products,
                       );
                     }
 
@@ -115,16 +98,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 30.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    LocaleKeys.exploreMore.tr(),
-                    style: AppTextStyle.title,
-                  ),
-                  SizedBox(width: 5.w),
-                  Assets.icons.nextArrow.svg(),
-                ],
+              InkWell(
+                onTap: (() {
+                  Navigator.pushNamed(
+                    context,
+                    RouteDefine.categoryListScreen.name,
+                    arguments: category,
+                  );
+                }),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      LocaleKeys.exploreMore.tr(),
+                      style: AppTextStyle.title,
+                    ),
+                    SizedBox(width: 5.w),
+                    Assets.icons.nextArrow.svg(),
+                  ],
+                ),
               ),
               SizedBox(height: 20.h),
               Assets.icons.divider.svg(),

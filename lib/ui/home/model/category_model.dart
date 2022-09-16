@@ -1,3 +1,4 @@
+// Project imports:
 import '../../../repositories/products/models/product.dart';
 
 class CategoryModel {

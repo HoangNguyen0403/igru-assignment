@@ -1,33 +1,37 @@
 [
     {
+      "id": 1,
       "name": "Polo shirt",
       "price": 12.4,
-      "imageUrl": "fake-url",
-      "description": "Fake description",
+      "imageUrl": "https://picsum.photos/id/0/5616/3744",
+      "description": "Polo shirts are casual and versatile garments. They can be worn in any season, from fall to spring. The polo shirt is an essential piece of any man's wardrobe.",
       "selected": false,
       "productType": "tshirt"
     },
     {
+      "id": 2,
       "name": "Dress for lady",
       "price": 128.4,
-      "imageUrl": "fake-url",
-      "description": "Fake description",
+      "imageUrl": "https://picsum.photos/id/1/5616/3744",
+      "description": "This dress is made of a light and airy fabric that will feel like a cloud on your skin. It has a loose, romantic shape with flowing sleeves and a draping back. The front has a band of lace that runs across the bodice and then falls down the side of the dress. The lace band also has a ruffle in the center, with a delicate floral pattern.",
       "selected": false,
       "productType": "dress"
     },
     {
+      "id": 3,
       "name": "Supermer bag",
-      "price": 12.4,
-      "imageUrl": "fake-url",
-      "description": "Fake description",
+      "price": 50,
+      "imageUrl": "https://picsum.photos/id/10/2500/1667",
+      "description": "There is nothing quite like the feeling of carrying a tote bag. It is the perfect bag for everyday use. It is lightweight and the straps are made of soft and durable fabric. The main compartment is spacious and can hold up to 10 pounds. The zippers are smooth and glide effortlessly.",
       "selected": false,
       "productType": "bag"
     },
     {
+      "id": 4,
       "name": "Short Jean",
-      "price": 12.4,
-      "imageUrl": "fake-url",
-      "description": "Fake description",
+      "price": 23.1,
+      "imageUrl": "https://picsum.photos/id/100/2500/1656",
+      "description": "Jean is a woman in her early 30s who loves to cook. She is married to a man in his early 40s and they have a 2-year-old son. Jean spends her days cooking, cleaning, and taking care of her family. When Jean goes to the grocery store, she feels the need to make the whole house smell like whatever she's cooking. In her new cookbook, the author shares recipes for homemade sprays, rubs, and spices that make food taste better and the house smell fantastic. Jean will use these recipes to make everything from condiments to desserts to a unique house scent.",
       "selected": false,
       "productType": "apparel"
     }

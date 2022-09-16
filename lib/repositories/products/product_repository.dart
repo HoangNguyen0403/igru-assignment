@@ -1,7 +1,10 @@
+// Dart imports:
 import 'dart:convert';
 
+// Flutter imports:
 import 'package:flutter/services.dart';
 
+// Project imports:
 import '../../gen/assets.gen.dart';
 import 'models/product.dart';
 
