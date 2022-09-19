@@ -5,5 +5,7 @@
   "dress": "Dress",
   "tshirt": "T-Shirt",
   "bag": "Bag",
-  "exploreMore":"Explore More"
+  "exploreMore": "Explore More",
+  "addToCart": "Add to cart",
+  "checkout": "Check out"
 }

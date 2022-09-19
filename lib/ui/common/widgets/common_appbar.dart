@@ -15,6 +15,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.appBarBG,
+      iconTheme: const IconThemeData(color: AppColors.titleActive),
       title: Assets.images.logo.svg(),
       centerTitle: true,
       actions: [

@@ -21,6 +21,7 @@ class Product extends Equatable {
   final bool selected;
   final ProductType productType;
   final bool isFavorited;
+  final List<String> imagesDetail;
 
   const Product({
     required this.id,
@@ -29,6 +30,7 @@ class Product extends Equatable {
     required this.imageUrl,
     required this.description,
     required this.productType,
+    this.imagesDetail = const [],
     this.selected = false,
     this.isFavorited = false,
   });
@@ -46,6 +48,7 @@ class Product extends Equatable {
         productType: productType,
         selected: selected ?? this.selected,
         isFavorited: isFavorite ?? isFavorited,
+        imagesDetail: imagesDetail,
       );
 
   factory Product.fromJson(Map<String, dynamic> json) =>
@@ -62,5 +65,6 @@ class Product extends Equatable {
         description,
         selected,
         isFavorited,
+        imagesDetail,
       ];
 }
