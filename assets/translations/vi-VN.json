@@ -7,6 +7,12 @@
   "bag": "Túi Xách",
   "exploreMore":"Khám Phá Thêm",
   "addToCart": "Thêm vào giỏ hàng",
-  "checkout": "Thanh toán"
-  
+  "checkout": "Thanh toán",
+  "paymentSuccess": "Thanh toán thành công",
+  "paymentSuccessDescription": "Thanh toán của bạn đã thành công\n\n",
+  "paymentId": "Payment ID ${id}",
+  "backToHome": "Trở về trang chủ",
+  "deliveryAddress":"Địa chỉ giao hàng",
+  "addressHint":"Địa chỉ của bạn",
+  "note":"Ghi chú"
 }

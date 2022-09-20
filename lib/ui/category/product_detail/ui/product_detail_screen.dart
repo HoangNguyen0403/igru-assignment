@@ -10,6 +10,7 @@ import '../../../../config/styles.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../repositories/products/models/product.dart';
 import '../../../../utils/multi-languages/multi_languages_utils.dart';
+import '../../../../utils/route/app_routing.dart';
 import '../../../../utils/session_utils.dart';
 import '../../../common/widgets/common_appbar.dart';
 import '../../../common/widgets/common_button.dart';
@@ -70,7 +71,13 @@ class ProductDetailScreen extends StatelessWidget {
                 const SizedBox(width: 15),
                 Expanded(
                   child: CommonButton(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        RouteDefine.checkoutScreen.name,
+                        arguments: [productSelected],
+                      );
+                    },
                     title: LocaleKeys.checkout.tr(),
                   ),
                 ),

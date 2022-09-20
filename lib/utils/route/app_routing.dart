@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../repositories/products/models/product.dart';
 import '../../ui/category/category_list/category_list_route.dart';
 import '../../ui/category/product_detail/product_detail_route.dart';
+import '../../ui/checkout/checkout_route.dart';
 import '../../ui/home/home_route.dart';
 import '../../ui/home/ui/home_screen.dart';
 
@@ -12,6 +13,7 @@ enum RouteDefine {
   homeScreen,
   categoryListScreen,
   productDetailScreen,
+  checkoutScreen,
 }
 
 class AppRouting {
@@ -23,6 +25,9 @@ class AppRouting {
           ),
       RouteDefine.productDetailScreen.name: (_) => ProductDetailRoute.route(
             settings.arguments as Product,
+          ),
+      RouteDefine.checkoutScreen.name: (_) => CheckoutRoute.route(
+            settings.arguments as List<Product>,
           ),
     };
 

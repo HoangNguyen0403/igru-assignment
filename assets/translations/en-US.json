@@ -7,5 +7,12 @@
   "bag": "Bag",
   "exploreMore": "Explore More",
   "addToCart": "Add to cart",
-  "checkout": "Check out"
+  "checkout": "Check out",
+  "paymentSuccess": "Payment success",
+  "paymentSuccessDescription": "Your payment was success\n\n",
+  "paymentId": "Payment ID ${id}",
+  "backToHome": "Back to home",
+  "deliveryAddress":"Delivery Address",
+  "addressHint":"Your address",
+  "note":"Note"
 }
