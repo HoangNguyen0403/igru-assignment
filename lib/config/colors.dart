@@ -19,4 +19,5 @@ class AppColors {
   static const bodyTextColor = Color(0xff727272);
   static const appBarBG = Color(0xffE7EAEF);
   static const greyBG = Color(0xffF2F2F2);
+  static const quantityBorder = Color(0xffC4C4C4);
 }
