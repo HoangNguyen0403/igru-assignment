@@ -18,34 +18,36 @@ class CategoryListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CommonAppBar(),
-      body: Column(
-        children: [
-          SizedBox(height: 20.h),
-          BlocConsumer<CategoryListBloc, CategoryListState>(
-            listener: (context, state) {
-              if (state is ProductLoading) {
-                LoadingDialog.showLoadingDialog(context);
-              } else {
-                LoadingDialog.hideLoadingDialog;
-              }
-            },
-            buildWhen: (_, current) => current is CategoryProductLoaded,
-            builder: (_, state) {
-              if (state is CategoryProductLoaded) {
-                return Expanded(
-                  child: ProductGridView(
-                    products: state.products,
-                    displayFavorite: true,
-                  ),
-                );
-              }
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CommonAppBar(),
+        body: Column(
+          children: [
+            SizedBox(height: 20.h),
+            BlocConsumer<CategoryListBloc, CategoryListState>(
+              listener: (context, state) {
+                if (state is ProductLoading) {
+                  LoadingDialog.showLoadingDialog(context);
+                } else {
+                  LoadingDialog.hideLoadingDialog;
+                }
+              },
+              buildWhen: (_, current) => current is CategoryProductLoaded,
+              builder: (_, state) {
+                if (state is CategoryProductLoaded) {
+                  return Expanded(
+                    child: ProductGridView(
+                      products: state.products,
+                      displayFavorite: true,
+                    ),
+                  );
+                }
 
-              return const SizedBox();
-            },
-          ),
-        ],
+                return const SizedBox();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

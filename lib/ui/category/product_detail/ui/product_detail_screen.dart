@@ -12,6 +12,7 @@ import '../../../../repositories/products/models/product.dart';
 import '../../../../utils/multi-languages/multi_languages_utils.dart';
 import '../../../../utils/route/app_routing.dart';
 import '../../../../utils/session_utils.dart';
+import '../../../checkout/checkout_route.dart';
 import '../../../common/widgets/common_appbar.dart';
 import '../../../common/widgets/common_button.dart';
 import 'carousel_widget.dart';
@@ -22,69 +23,75 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CommonAppBar(),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            child: CarouselProduct(product: productSelected),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  productSelected.name.toUpperCase(),
-                  style: AppTextStyle.title.copyWith(letterSpacing: 3),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  SessionUtils.priceDisplay(productSelected.price),
-                  style: AppTextStyle.price,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  productSelected.description,
-                  style: AppTextStyle.bodyL,
-                ),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: const CommonAppBar(),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: CarouselProduct(product: productSelected),
             ),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CommonButton(
-                    onTap: () {},
-                    title: LocaleKeys.addToCart.tr(),
-                    icon: Padding(
-                      padding: EdgeInsets.only(right: 10.w),
-                      child: Assets.icons.shoppingBag
-                          .svg(color: AppColors.offWhite),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    productSelected.name.toUpperCase(),
+                    style: AppTextStyle.title.copyWith(letterSpacing: 3),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    SessionUtils.priceDisplay(productSelected.price),
+                    style: AppTextStyle.price,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    productSelected.description,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.bodyL,
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CommonButton(
+                      onTap: () {
+                        SessionUtils.addProductToCart(productSelected);
+                      },
+                      title: LocaleKeys.addToCart.tr(),
+                      icon: Padding(
+                        padding: EdgeInsets.only(right: 10.w),
+                        child: Assets.icons.shoppingBag
+                            .svg(color: AppColors.offWhite),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 15),
-                Expanded(
-                  child: CommonButton(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        RouteDefine.checkoutScreen.name,
-                        arguments: [productSelected],
-                      );
-                    },
-                    title: LocaleKeys.checkout.tr(),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: CommonButton(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteDefine.checkoutScreen.name,
+                          arguments: CheckoutArgs(products: [productSelected]),
+                        );
+                      },
+                      title: LocaleKeys.checkout.tr(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

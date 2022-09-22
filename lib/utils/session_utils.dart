@@ -2,15 +2,14 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import '../config/theme.dart';
+import '../database/hive_manager.dart';
+import '../database/models/product_in_database.dart';
+import '../repositories/products/models/product.dart';
 import 'di/injection.dart';
 import 'multi-languages/multi_languages_utils.dart';
 import 'shared_pref_manager.dart';
 
 class SessionUtils {
-  static bool get isDarkTheme =>
-      getIt<AppTheme>().currentTheme == ThemeMode.dark;
-
   static void saveAccessToken(String accessToken) =>
       getIt<SharedPreferencesManager>().putString(
         SharedPreferenceKey.keyAccessToken,
@@ -28,5 +27,32 @@ class SessionUtils {
       symbol: "\$",
       decimalDigits: 2,
     ).format(price);
+  }
+
+  static void addProductToCart(Product product) {
+    getIt<HiveManager>().putDataWithKey<ProductInDatabase>(
+      HiveBoxKey.products.name,
+      product.id.toString(),
+      product.productLocalDB,
+    );
+  }
+
+  static List<Product> getProductFromDB() {
+    final products = getIt<HiveManager>().getListData<ProductInDatabase>(
+      HiveBoxKey.products.name,
+    );
+
+    return products.map((productInDB) => productInDB.productResponse).toList();
+  }
+
+  static void removeProductFromDB(Product product) {
+    getIt<HiveManager>().deleteDataWithKey(
+      HiveBoxKey.products.name,
+      product.id.toString(),
+    );
+  }
+
+  static void clearCart() {
+    getIt<HiveManager>().deleteAllDataFromBox(HiveBoxKey.products.name);
   }
 }

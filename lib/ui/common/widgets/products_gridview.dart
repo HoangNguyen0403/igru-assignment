@@ -21,7 +21,6 @@ class ProductGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: SessionUtils.isMobile ? 2 : 3,
@@ -32,7 +31,6 @@ class ProductGridView extends StatelessWidget {
       itemCount: products.length,
       itemBuilder: (context, index) => ProductCard(
         product: products[index],
-        displayFavoriteButton: displayFavorite,
       ),
     );
   }

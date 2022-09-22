@@ -14,5 +14,8 @@
   "backToHome": "Back to home",
   "deliveryAddress":"Delivery Address",
   "addressHint":"Your address",
-  "note":"Note"
+  "note":"Note",
+  "buyNow":"Buy Now",
+  "favoritess":"Favorites",
+  "total": "Total"
 }

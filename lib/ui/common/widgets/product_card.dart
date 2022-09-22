@@ -11,14 +11,11 @@ import '../../../config/styles.dart';
 import '../../../repositories/products/models/product.dart';
 import '../../../utils/route/app_routing.dart';
 import '../../../utils/session_utils.dart';
-import 'favorite_button.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  final bool displayFavoriteButton;
   const ProductCard({
     required this.product,
-    this.displayFavoriteButton = false,
     super.key,
   });
 
@@ -47,6 +44,7 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                     child: CachedNetworkImage(
                       imageUrl: product.imageUrl,
+                      cacheKey: product.imageUrl,
                       progressIndicatorBuilder: (context, url, progress) =>
                           const Center(
                         child: CircularProgressIndicator(),
@@ -54,7 +52,6 @@ class ProductCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  if (displayFavoriteButton) FavoriteButton(product: product),
                 ],
               ),
             ),

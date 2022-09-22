@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 // Project imports:
+import '../../../database/models/product_in_database.dart';
 import '../../../utils/double_ext.dart';
 
 part 'product.g.dart';
@@ -21,7 +22,6 @@ class Product extends Equatable {
   final double price;
   final String imageUrl;
   final String description;
-  final bool selected;
   final ProductType productType;
   final bool isFavorited;
   final List<String> imagesDetail;
@@ -37,13 +37,11 @@ class Product extends Equatable {
     required this.description,
     required this.productType,
     this.imagesDetail = const [],
-    this.selected = false,
     this.isFavorited = false,
     this.quantity = 1,
   });
 
   Product copyWith({
-    bool? selected,
     bool? isFavorite,
     int? quantity,
   }) =>
@@ -54,10 +52,18 @@ class Product extends Equatable {
         imageUrl: imageUrl,
         description: description,
         productType: productType,
-        selected: selected ?? this.selected,
         isFavorited: isFavorite ?? isFavorited,
         imagesDetail: imagesDetail,
         quantity: quantity ?? this.quantity,
+      );
+
+  ProductInDatabase get productLocalDB => ProductInDatabase.fromJson(
+        toJson()
+          ..addAll(
+            {
+              'createAt': DateTime.now().toString(),
+            },
+          ),
       );
 
   factory Product.fromJson(Map<String, dynamic> json) =>
@@ -72,7 +78,6 @@ class Product extends Equatable {
         price,
         imageUrl,
         description,
-        selected,
         isFavorited,
         imagesDetail,
         quantity,

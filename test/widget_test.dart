@@ -7,19 +7,12 @@
 
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 
 // Project imports:
-import 'package:igru_assignment/config/theme.dart';
 import 'package:igru_assignment/ui/home/ui/home_screen.dart';
 import 'utilities/test_utilitiy.dart';
 
 void main() {
-  setUpAll(() {
-    GetIt.I.registerLazySingleton<AppTheme>(
-      () => AppTheme(),
-    );
-  });
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(

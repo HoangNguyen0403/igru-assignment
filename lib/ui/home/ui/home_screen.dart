@@ -42,87 +42,93 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: Category.values.length,
-      child: Scaffold(
-        appBar: const CommonAppBar(),
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 35.h),
-              Text(
-                LocaleKeys.homeTitle.tr().toUpperCase(),
-                style: AppTextStyle.title.copyWith(letterSpacing: 3),
-              ),
-              Assets.icons.divider.svg(),
-              SizedBox(height: 15.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: TabBar(
-                  tabs: Category.values
-                      .map(
-                        (category) => Tab(
-                          text: category.name.toLowerCase().tr(),
-                        ),
-                      )
-                      .toList(),
-                  onTap: ((index) {
-                    category = Category.values[index];
-                    context.read<HomeBloc>().add(
-                          LoadProducts(productType: category.productTypeFilter),
-                        );
-                  }),
-                  labelStyle: AppTextStyle.subTitle14,
-                  indicatorPadding: EdgeInsets.only(bottom: 10.h),
-                  labelColor: AppColors.titleTextColor,
-                  unselectedLabelColor: AppColors.placeHolder,
-                  unselectedLabelStyle: AppTextStyle.subTitle14.copyWith(
-                    color: AppColors.placeHolder,
-                  ),
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: AppColors.primary,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: const CommonAppBar(),
+          body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 35.h),
+                Text(
+                  LocaleKeys.homeTitle.tr().toUpperCase(),
+                  style: AppTextStyle.title.copyWith(letterSpacing: 3),
                 ),
-              ),
-              Expanded(
-                child: BlocBuilder<HomeBloc, HomeState>(
-                  buildWhen: (_, current) => current is ProductLoaded,
-                  builder: (context, state) {
-                    if (state is ProductLoaded) {
-                      return ProductGridView(
-                        products: state.categoryModel.products,
-                      );
-                    }
-
-                    return const SizedBox();
-                  },
-                ),
-              ),
-              SizedBox(height: 30.h),
-              InkWell(
-                onTap: (() {
-                  Navigator.pushNamed(
-                    context,
-                    RouteDefine.categoryListScreen.name,
-                    arguments: category,
-                  );
-                }),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      LocaleKeys.exploreMore.tr(),
-                      style: AppTextStyle.title,
+                Assets.icons.divider.svg(),
+                SizedBox(height: 15.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TabBar(
+                    tabs: Category.values
+                        .map(
+                          (category) => Tab(
+                            text: category.name.toLowerCase().tr(),
+                          ),
+                        )
+                        .toList(),
+                    onTap: ((index) {
+                      category = Category.values[index];
+                      context.read<HomeBloc>().add(
+                            LoadProducts(
+                              productType: category.productTypeFilter,
+                            ),
+                          );
+                    }),
+                    labelStyle: AppTextStyle.subTitle14,
+                    padding: EdgeInsets.zero,
+                    indicatorPadding: EdgeInsets.only(bottom: 10.h),
+                    labelPadding: EdgeInsets.zero,
+                    labelColor: AppColors.titleTextColor,
+                    unselectedLabelColor: AppColors.placeHolder,
+                    unselectedLabelStyle: AppTextStyle.subTitle14.copyWith(
+                      color: AppColors.placeHolder,
                     ),
-                    SizedBox(width: 5.w),
-                    Assets.icons.nextArrow.svg(),
-                  ],
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: AppColors.primary,
+                  ),
                 ),
-              ),
-              SizedBox(height: 20.h),
-              Assets.icons.divider.svg(),
-              SizedBox(height: 30.h),
-            ],
+                Expanded(
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    buildWhen: (_, current) => current is ProductLoaded,
+                    builder: (context, state) {
+                      if (state is ProductLoaded) {
+                        return ProductGridView(
+                          products: state.categoryModel.products,
+                        );
+                      }
+
+                      return const SizedBox();
+                    },
+                  ),
+                ),
+                SizedBox(height: 30.h),
+                InkWell(
+                  onTap: (() {
+                    Navigator.pushNamed(
+                      context,
+                      RouteDefine.categoryListScreen.name,
+                      arguments: category,
+                    );
+                  }),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        LocaleKeys.exploreMore.tr(),
+                        style: AppTextStyle.title,
+                      ),
+                      SizedBox(width: 5.w),
+                      Assets.icons.nextArrow.svg(),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                Assets.icons.divider.svg(),
+                SizedBox(height: 30.h),
+              ],
+            ),
           ),
         ),
       ),

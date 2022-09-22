@@ -2,18 +2,22 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Project imports:
 import '../../../config/colors.dart';
 import '../../../config/styles.dart';
 import '../../../repositories/products/models/product.dart';
-import '../bloc/bloc/checkout_bloc.dart';
 
 class QuantityWidget extends StatefulWidget {
   final Product product;
-  const QuantityWidget({required this.product, super.key});
+  final Function(int quantity) onUpdateQuantity;
+
+  const QuantityWidget({
+    required this.product,
+    required this.onUpdateQuantity,
+    super.key,
+  });
 
   @override
   State<QuantityWidget> createState() => _QuantityWidgetState();
@@ -63,7 +67,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
         GestureDetector(
           onTap: () {
             _changeQuantityPressed(isIncrease: true);
-            setState(() {});
           },
           child: Container(
             decoration: BoxDecoration(
@@ -85,12 +88,7 @@ class _QuantityWidgetState extends State<QuantityWidget> {
 
   void _changeQuantityPressed({bool isIncrease = false}) {
     isIncrease ? currentQuantity++ : currentQuantity--;
-    context.read<CheckoutBloc>().add(
-          ChangeQuantityPressed(
-            currentQuantity,
-            widget.product.id,
-          ),
-        );
+    widget.onUpdateQuantity(currentQuantity);
     setState(() {});
   }
 }

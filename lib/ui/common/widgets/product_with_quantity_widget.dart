@@ -9,11 +9,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/styles.dart';
 import '../../../repositories/products/models/product.dart';
 import '../../../utils/session_utils.dart';
-import 'quantity_widget.dart';
+import '../../checkout/ui/quantity_widget.dart';
 
-class CheckoutItem extends StatelessWidget {
+class ProductWithQuantity extends StatelessWidget {
   final Product product;
-  const CheckoutItem({required this.product, super.key});
+  final Function(int quantity) onUpdateQuantity;
+  const ProductWithQuantity({
+    required this.product,
+    required this.onUpdateQuantity,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +32,7 @@ class CheckoutItem extends StatelessWidget {
             height: 150.h,
             child: CachedNetworkImage(
               imageUrl: product.imageUrl,
+              cacheKey: product.imageUrl,
               progressIndicatorBuilder: (context, url, progress) =>
                   const Center(
                 child: CircularProgressIndicator(),
@@ -53,7 +59,10 @@ class CheckoutItem extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: QuantityWidget(product: product),
+                    child: QuantityWidget(
+                      product: product,
+                      onUpdateQuantity: onUpdateQuantity,
+                    ),
                   ),
                   Text(
                     SessionUtils.priceDisplay(product.price),
