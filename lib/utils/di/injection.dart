@@ -2,7 +2,7 @@
 import 'package:get_it/get_it.dart';
 
 // Project imports:
-import '../../config/theme.dart';
+import '../../database/hive_manager.dart';
 import '../../repositories/products/product_repository.dart';
 import '../shared_pref_manager.dart';
 
@@ -21,6 +21,6 @@ Future _registerAppComponents() async {
   final sharedPreferencesManager = await SharedPreferencesManager.getInstance();
   getIt.registerSingleton<SharedPreferencesManager>(sharedPreferencesManager!);
 
-  final appTheme = AppTheme();
-  getIt.registerSingleton(appTheme);
+  final hiveManager = await HiveManager.getInstance();
+  getIt.registerSingleton<HiveManager>(hiveManager);
 }

@@ -10,10 +10,12 @@ import '../../../config/styles.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../utils/multi-languages/multi_languages_utils.dart';
 import '../../../utils/route/app_routing.dart';
+import '../../../utils/session_utils.dart';
 import '../../common/widgets/common_button.dart';
 
 class PaymentSuccessDialog extends StatelessWidget {
-  const PaymentSuccessDialog({super.key});
+  final bool canClearCart;
+  const PaymentSuccessDialog({this.canClearCart = false, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,9 @@ class PaymentSuccessDialog extends StatelessWidget {
             CommonButton(
               title: LocaleKeys.backToHome.tr().toUpperCase(),
               onTap: () {
+                if (canClearCart) {
+                  SessionUtils.clearCart();
+                }
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   RouteDefine.homeScreen.name,

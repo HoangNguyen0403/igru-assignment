@@ -14,5 +14,8 @@
   "backToHome": "Trở về trang chủ",
   "deliveryAddress":"Địa chỉ giao hàng",
   "addressHint":"Địa chỉ của bạn",
-  "note":"Ghi chú"
+  "note":"Ghi chú",
+  "buyNow":"Mua Ngay",
+  "favorites":"Ưa Thích",
+  "total": "Tổng tiền"
 }

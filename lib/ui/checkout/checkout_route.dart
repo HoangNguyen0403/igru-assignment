@@ -9,9 +9,16 @@ import '../../repositories/products/models/product.dart';
 import 'bloc/bloc/checkout_bloc.dart';
 import 'ui/checkout_screen.dart';
 
+class CheckoutArgs {
+  final List<Product> products;
+  final bool isClearCart;
+
+  CheckoutArgs({required this.products, this.isClearCart = false});
+}
+
 class CheckoutRoute {
-  static Widget route(List<Product> products) => BlocProvider(
-        create: (context) => CheckoutBloc(products),
-        child: CheckoutScreen(products: products),
+  static Widget route(CheckoutArgs args) => BlocProvider(
+        create: (context) => CheckoutBloc(args.products),
+        child: CheckoutScreen(args: args),
       );
 }

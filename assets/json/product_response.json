@@ -1,45 +1,114 @@
 [
-    {
-      "id": 1,
-      "name": "Polo shirt",
-      "price": 12.4,
-      "imageUrl": "https://picsum.photos/id/0/5616/3744",
-      "description": "Polo shirts are casual and versatile garments. They can be worn in any season, from fall to spring. The polo shirt is an essential piece of any man's wardrobe.",
-      "selected": false,
-      "productType": "tshirt",
-      "imagesDetail": ["https://picsum.photos/id/0/5616/3744","https://picsum.photos/id/1025/4951/3301","https://picsum.photos/id/1024/1920/1280","https://picsum.photos/id/1023/3955/2094"]
-    },
-    {
-      "id": 2,
-      "name": "Dress for lady",
-      "price": 128.4,
-      "imageUrl": "https://picsum.photos/id/1/5616/3744",
-      "description": "This dress is made of a light and airy fabric that will feel like a cloud on your skin. It has a loose, romantic shape with flowing sleeves and a draping back. The front has a band of lace that runs across the bodice and then falls down the side of the dress. The lace band also has a ruffle in the center, with a delicate floral pattern.",
-      "selected": false,
-      "productType": "dress",
-      "imagesDetail": ["https://picsum.photos/id/0/5616/3744"]
+  {
+    "id": 1,
+    "name": "Polo shirt",
+    "price": 12.4,
+    "imageUrl": "https://picsum.photos/id/0/5616/3744",
+    "description": "Polo shirts are casual and versatile garments. They can be worn in any season, from fall to spring. The polo shirt is an essential piece of any man's wardrobe.",
+    "selected": false,
+    "productType": "tshirt",
+    "imagesDetail": ["https://picsum.photos/id/0/5616/3744","https://picsum.photos/id/1025/4951/3301","https://picsum.photos/id/1024/1920/1280","https://picsum.photos/id/1023/3955/2094","https://picsum.photos/id/116/3504/2336"]
+  },
+  {
+    "id": 2,
+    "name": "Dress for lady",
+    "price": 128.4,
+    "imageUrl": "https://picsum.photos/id/1/5616/3744",
+    "description": "This dress is made of a light and airy fabric that will feel like a cloud on your skin. It has a loose, romantic shape with flowing sleeves and a draping back. The front has a band of lace that runs across the bodice and then falls down the side of the dress. The lace band also has a ruffle in the center, with a delicate floral pattern.",
+    "selected": false,
+    "productType": "dress",
+    "imagesDetail": ["https://picsum.photos/id/0/5616/3744","https://picsum.photos/id/115/1500/1000","https://picsum.photos/id/114/3264/2448"]
 
-    },
-    {
-      "id": 3,
-      "name": "Supermer bag",
-      "price": 50,
-      "imageUrl": "https://picsum.photos/id/10/2500/1667",
-      "description": "There is nothing quite like the feeling of carrying a tote bag. It is the perfect bag for everyday use. It is lightweight and the straps are made of soft and durable fabric. The main compartment is spacious and can hold up to 10 pounds. The zippers are smooth and glide effortlessly.",
-      "selected": false,
-      "productType": "bag",
-      "imagesDetail": ["https://picsum.photos/id/0/5616/3744"]
+  },
+  {
+    "id": 3,
+    "name": "Supermer bag",
+    "price": 50,
+    "imageUrl": "https://picsum.photos/id/10/2500/1667",
+    "description": "There is nothing quite like the feeling of carrying a tote bag. It is the perfect bag for everyday use. It is lightweight and the straps are made of soft and durable fabric. The main compartment is spacious and can hold up to 10 pounds. The zippers are smooth and glide effortlessly.",
+    "selected": false,
+    "productType": "bag",
+    "imagesDetail": ["https://picsum.photos/id/0/5616/3744"]
 
-    },
-    {
-      "id": 4,
-      "name": "Short Jean",
-      "price": 23.1,
-      "imageUrl": "https://picsum.photos/id/100/2500/1656",
-      "description": "Jean is a woman in her early 30s who loves to cook. She is married to a man in his early 40s and they have a 2-year-old son. Jean spends her days cooking, cleaning, and taking care of her family. When Jean goes to the grocery store, she feels the need to make the whole house smell like whatever she's cooking. In her new cookbook, the author shares recipes for homemade sprays, rubs, and spices that make food taste better and the house smell fantastic. Jean will use these recipes to make everything from condiments to desserts to a unique house scent.",
-      "selected": false,
-      "productType": "apparel",
-      "imagesDetail": ["https://picsum.photos/id/0/5616/3744"]
-
-    }
-  ]
+  },
+  {
+    "id": 4,
+    "name": "Short Jean",
+    "price": 23.1,
+    "imageUrl": "https://picsum.photos/id/100/2500/1656",
+    "description": "Jean is a woman in her early 30s who loves to cook. She is married to a man in his early 40s and they have a 2-year-old son. Jean spends her days cooking, cleaning, and taking care of her family. When Jean goes to the grocery store, she feels the need to make the whole house smell like whatever she's cooking. In her new cookbook, the author shares recipes for homemade sprays, rubs, and spices that make food taste better and the house smell fantastic. Jean will use these recipes to make everything from condiments to desserts to a unique house scent.",
+    "selected": false,
+    "productType": "apparel",
+    "imagesDetail": ["https://picsum.photos/id/0/5616/3744","https://picsum.photos/id/113/4168/2464"]
+  },
+  {
+    "id": 5,
+    "name": "Supremer Shirt",
+    "price": 70.2,
+    "imageUrl": "https://picsum.photos/id/112/4200/2800",
+    "description": "The Supremer shirt is a short sleeve button-down shirt that is made with a breathable, lightweight fabric. The shirt features a traditional collar, front and back yoke, and side slits. The Supremer shirt is available in a variety of colors, including charcoal, red, navy, and black.",
+    "selected": false,
+    "productType": "tshirt",
+    "imagesDetail": ["https://picsum.photos/id/112/4200/2800","https://picsum.photos/id/111/4400/2656","https://picsum.photos/id/110/5616/3744","https://picsum.photos/id/11/2500/1667","https://picsum.photos/id/109/4287/2392"]
+  },
+  {
+    "id": 6,
+    "name": "Long Hand Shirt",
+    "price": 21,
+    "imageUrl": "https://picsum.photos/id/0/5616/3744",
+    "description": "This men's shirt is a long-sleeve shirt with a button up collar. It has a stylish design on the front and is made of a soft, cotton-like fabric. It is a light, summer weight shirt that would be comfortable in the heat.",
+    "selected": false,
+    "productType": "tshirt",
+    "imagesDetail": ["https://picsum.photos/id/1084/4579/3271","https://picsum.photos/id/1083/5472/3648","https://picsum.photos/id/1083/5472/3648","https://picsum.photos/id/1083/5472/3648","https://picsum.photos/id/1083/5472/3648"]
+  },
+  {
+    "id": 7,
+    "name": "Red T Shirt",
+    "price": 9.3,
+    "imageUrl": "https://picsum.photos/id/108/2000/1333",
+    "description": "If you are looking for a red shirt, then you should definitely look into this shirt. It is made of a light-weight material and has a perfect fit. This shirt is not only perfect for any occasion, but is also perfect for anyone that likes to wear a red shirt.",
+    "selected": false,
+    "productType": "tshirt",
+    "imagesDetail": ["https://picsum.photos/id/108/2000/1333","https://picsum.photos/id/1079/4496/3000","https://picsum.photos/id/1078/3000/2000","https://picsum.photos/id/1077/3000/1995","https://picsum.photos/id/1077/3000/1995"]
+  },
+  {
+    "id": 8,
+    "name": "Hand-held Bag",
+    "price": 3.99,
+    "imageUrl": "https://picsum.photos/id/1075/4858/3239",
+    "description": "Briefcase with a handle and a strap. This bag is a popular item for the office, school, or travel.",
+    "selected": false,
+    "productType": "bag",
+    "imagesDetail": ["https://picsum.photos/id/1074/5472/3648","https://picsum.photos/id/1073/5472/3648","https://picsum.photos/id/1072/3872/2592"]
+  },
+  {
+    "id": 9,
+    "name": "Short Skirt",
+    "price": 8.99,
+    "imageUrl": "https://picsum.photos/id/107/5760/3840",
+    "description": "A short skirt is a skirt with a hemline that ends just below the knees or the hemline that ends above the knees. They are typically made from fabrics such as cotton, polyester, or denim. Short skirts are usually a size or two smaller than the size of a normal skirt.",
+    "selected": false,
+    "productType": "dress",
+    "imagesDetail": ["https://picsum.photos/id/107/5760/3840","https://picsum.photos/id/1069/3500/2333","https://picsum.photos/id/1068/7117/4090"]
+  },
+  {
+    "id": 10,
+    "name": "Helmet",
+    "price": 33.42,
+    "imageUrl": "https://picsum.photos/id/1067/5760/3840",
+    "description": "There are many kinds of helmets to choose from. They vary from full face helmets, to half helmets, to open face helmets, to non-face helmets. Full face helmets provide the most protection and are the most expensive. Half helmets provide less protection and are less expensive. Open face helmets are not protective and are cheaper.",
+    "selected": false,
+    "productType": "apparel",
+    "imagesDetail": ["https://picsum.photos/id/1067/5760/3840","https://picsum.photos/id/1066/2144/1424"]
+  },
+  {
+    "id": 11,
+    "name": "White Laptop Bag",
+    "price": 27.2,
+    "imageUrl": "https://picsum.photos/id/1065/3744/5616",
+    "description": "A Laptop Bag that's as easy on the eyes as it is on the back. This lightweight, breathable, waterproof, and durable bag is made of water-resistant fabric with a sturdy, easy-to-clean design. This laptop bag features an adjustable, padded, and detachable shoulder strap for carrying ease and comfort.",
+    "selected": false,
+    "productType": "bag",
+    "imagesDetail": ["https://picsum.photos/id/1065/3744/5616"]
+  }
+]

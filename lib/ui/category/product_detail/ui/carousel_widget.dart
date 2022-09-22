@@ -9,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Project imports:
 import '../../../../config/colors.dart';
 import '../../../../repositories/products/models/product.dart';
-import '../../../common/widgets/favorite_button.dart';
 
 class CarouselProduct extends StatefulWidget {
   final Product product;
@@ -34,6 +33,7 @@ class _CarouselProductState extends State<CarouselProduct> {
               itemBuilder: (context, index, realIndex) {
                 return CachedNetworkImage(
                   imageUrl: widget.product.imagesDetail[index],
+                  cacheKey: widget.product.imagesDetail[index],
                   progressIndicatorBuilder: (context, url, progress) =>
                       const Center(
                     child: CircularProgressIndicator(),
@@ -43,9 +43,9 @@ class _CarouselProductState extends State<CarouselProduct> {
               },
               options: CarouselOptions(
                 height: 400.h,
-                autoPlay: true,
+                autoPlay: widget.product.imagesDetail.length > 1,
                 viewportFraction: 1,
-                autoPlayInterval: const Duration(seconds: 2),
+                autoPlayInterval: const Duration(seconds: 4),
                 onPageChanged: (index, reason) {
                   setState(() {
                     _current = index;
@@ -54,7 +54,6 @@ class _CarouselProductState extends State<CarouselProduct> {
               ),
               carouselController: _controller,
             ),
-            FavoriteButton(product: widget.product),
           ],
         ),
         Row(

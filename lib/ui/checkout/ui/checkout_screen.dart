@@ -9,89 +9,101 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../config/colors.dart';
 import '../../../config/styles.dart';
 import '../../../gen/assets.gen.dart';
-import '../../../repositories/products/models/product.dart';
 import '../../../utils/multi-languages/multi_languages_utils.dart';
 import '../../../utils/session_utils.dart';
 import '../../common/widgets/common_appbar.dart';
 import '../../common/widgets/common_button.dart';
+import '../../common/widgets/product_with_quantity_widget.dart';
 import '../bloc/bloc/checkout_bloc.dart';
-import 'checkout_item_widget.dart';
+import '../checkout_route.dart';
 import 'delivery_address_section.dart';
 import 'payment_success_dialog.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  final List<Product> products;
-  const CheckoutScreen({required this.products, super.key});
+  final CheckoutArgs args;
+  const CheckoutScreen({required this.args, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: const CommonAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 35.h),
-          Text(
-            LocaleKeys.checkout.tr().toUpperCase(),
-            style: AppTextStyle.title.copyWith(letterSpacing: 3),
-          ),
-          Assets.icons.divider.svg(),
-          const DeliveryAddressSection(),
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) =>
-                  CheckoutItem(product: products[index]),
-              itemCount: products.length,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: const CommonAppBar(displayCartIcon: false),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 35.h),
+            Text(
+              LocaleKeys.checkout.tr().toUpperCase(),
+              style: AppTextStyle.title.copyWith(letterSpacing: 3),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  LocaleKeys.checkout.tr().toUpperCase(),
-                  style: AppTextStyle.title.copyWith(letterSpacing: 3),
-                ),
-                BlocBuilder<CheckoutBloc, CheckoutState>(
-                  buildWhen: (_, current) => current is CalculatedTotalState,
-                  builder: (context, state) {
-                    final double totalPrice = state is CalculatedTotalState
-                        ? state.products.fold(
-                            0,
-                            (previousValue, product) =>
-                                previousValue + product.priceWithQuantity,
-                          )
-                        : 0;
-
-                    return Text(
-                      SessionUtils.priceDisplay(totalPrice),
-                      style: AppTextStyle.price,
-                    );
+            Assets.icons.divider.svg(),
+            const DeliveryAddressSection(),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) => ProductWithQuantity(
+                  product: args.products[index],
+                  onUpdateQuantity: (quantity) {
+                    context.read<CheckoutBloc>().add(
+                          ChangeQuantityPressed(
+                            quantity,
+                            args.products[index].id,
+                          ),
+                        );
                   },
                 ),
-              ],
+                itemCount: args.products.length,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+              ),
             ),
-          ),
-          SizedBox(height: 22.h),
-          CommonButton(
-            title: LocaleKeys.checkout.tr(),
-            icon: Padding(
-              padding: const EdgeInsets.only(right: 24),
-              child: Assets.icons.shoppingBag.svg(color: AppColors.offWhite),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    LocaleKeys.total.tr().toUpperCase(),
+                    style: AppTextStyle.title.copyWith(letterSpacing: 3),
+                  ),
+                  BlocBuilder<CheckoutBloc, CheckoutState>(
+                    buildWhen: (_, current) => current is CalculatedTotalState,
+                    builder: (context, state) {
+                      final double totalPrice = state is CalculatedTotalState
+                          ? state.products.fold(
+                              0,
+                              (previousValue, product) =>
+                                  previousValue + product.priceWithQuantity,
+                            )
+                          : 0;
+
+                      return Text(
+                        SessionUtils.priceDisplay(totalPrice),
+                        style: AppTextStyle.price,
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-            onTap: () {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) => const PaymentSuccessDialog(),
-              );
-            },
-            borderRadius: 0,
-          ),
-        ],
+            SizedBox(height: 22.h),
+            CommonButton(
+              title: LocaleKeys.checkout.tr(),
+              icon: Padding(
+                padding: const EdgeInsets.only(right: 24),
+                child: Assets.icons.shoppingBag.svg(color: AppColors.offWhite),
+              ),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) =>
+                      PaymentSuccessDialog(canClearCart: args.isClearCart),
+                );
+              },
+              borderRadius: 0,
+            ),
+          ],
+        ),
       ),
     );
   }

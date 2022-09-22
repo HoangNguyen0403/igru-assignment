@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
 import 'config/navigation_util.dart';
-import 'config/theme.dart';
+import 'database/models/product_in_database.dart';
 import 'utils/di/injection.dart';
 import 'utils/route/app_routing.dart';
 
@@ -26,32 +27,17 @@ void main() async {
 Future<void> _beforeRunApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await _initHiveDatabase();
 
   await setupInjection();
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+Future<void> _initHiveDatabase() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductInDatabaseAdapter());
 }
 
-class _MyAppState extends State<MyApp> {
-  AppTheme appTheme = getIt<AppTheme>();
-
-  @override
-  void initState() {
-    appTheme.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    appTheme.dispose();
-    super.dispose();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -66,9 +52,6 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         initialRoute: RouteDefine.homeScreen.name,
         onGenerateRoute: AppRouting.generateRoute,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: appTheme.currentTheme,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
