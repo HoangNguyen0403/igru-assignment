@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// Project imports:
+import 'package:igru_assignment/config/navigation_util.dart';
+import 'package:igru_assignment/utils/route/app_routing.dart';
+
 /// Wrapper for wrapping widget in Material App.
 /// This will avoid UI exception when running widget.
 class TestWidgetWrapper extends StatelessWidget {
@@ -14,6 +18,8 @@ class TestWidgetWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: (settings) => AppRouting.generateRoute(settings),
+      navigatorKey: NavigationUtil.rootKey,
       home: ScreenUtilInit(
         designSize: const Size(400, 800),
         builder: (_, __) => child,

@@ -63,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     tabs: Category.values
                         .map(
                           (category) => Tab(
+                            key: Key(category.name.toLowerCase()),
                             text: category.name.toLowerCase().tr(),
                           ),
                         )
@@ -104,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 30.h),
                 InkWell(
+                  key: const Key('exploreMore'),
                   onTap: (() {
                     Navigator.pushNamed(
                       context,
