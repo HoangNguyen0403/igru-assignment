@@ -9,12 +9,9 @@ import 'package:flutter/services.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 
 // Project imports:
-import 'package:igru_assignment/database/hive_manager.dart';
 import 'package:igru_assignment/gen/assets.gen.dart';
 import 'package:igru_assignment/repositories/products/models/product.dart';
 import 'package:igru_assignment/repositories/products/product_repository.dart';
@@ -25,8 +22,8 @@ import 'package:igru_assignment/ui/home/model/category_model.dart';
 import 'package:igru_assignment/ui/home/ui/home_screen.dart';
 import 'package:igru_assignment/utils/di/injection.dart';
 import '../../utilities/mock_utility.dart';
-import '../../utilities/path_provider_mock.dart';
 import '../../utilities/test_utilitiy.dart';
+import '../../utilities/utility.dart';
 
 void main() {
   final HomeBloc homeBlocMock = HomeBlocMock();
@@ -36,16 +33,17 @@ void main() {
   const mockProductType = ProductType.bag;
 
   setUpAll(() async {
-    PathProviderPlatform.instance = FakePathProviderPlatform();
-    getIt.registerSingleton(HiveManager());
     getIt.registerSingleton<ProductRepository>(repoMock);
 
     when(() => repoMock.getProducts()).thenAnswer((invocation) async => []);
     response = jsonDecode(
       await rootBundle.loadString(Assets.json.productResponse),
     );
-    await Hive.initFlutter();
-    await Hive.openBox(HiveBoxKey.products.name);
+    await Utility.mockHive("home-screen");
+  });
+
+  tearDownAll(() async {
+    await Utility.unMockHive();
   });
 
   group("Home Screen", () {

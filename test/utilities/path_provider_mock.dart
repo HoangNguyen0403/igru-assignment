@@ -14,6 +14,9 @@ const String kExternalStoragePath = 'externalStoragePath';
 class FakePathProviderPlatform extends Fake
     with MockPlatformInterfaceMixin
     implements PathProviderPlatform {
+  final String applicationPath;
+
+  FakePathProviderPlatform(this.applicationPath);
   @override
   Future<String?> getTemporaryPath() async {
     return kTemporaryPath;
@@ -31,7 +34,7 @@ class FakePathProviderPlatform extends Fake
 
   @override
   Future<String?> getApplicationDocumentsPath() async {
-    return kApplicationDocumentsPath;
+    return "$kApplicationDocumentsPath/$applicationPath";
   }
 
   @override

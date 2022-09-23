@@ -20,9 +20,12 @@ class TestWidgetWrapper extends StatelessWidget {
     return MaterialApp(
       onGenerateRoute: (settings) => AppRouting.generateRoute(settings),
       navigatorKey: NavigationUtil.rootKey,
-      home: ScreenUtilInit(
-        designSize: const Size(400, 800),
-        builder: (_, __) => child,
+      home: MediaQuery(
+        data: const MediaQueryData(),
+        child: ScreenUtilInit(
+          designSize: const Size(375, 800),
+          builder: (_, __) => child,
+        ),
       ),
     );
   }
