@@ -1,3 +1,8 @@
+## App Resouce
+
+- Android build release: https://i.diawi.com/TreKwt
+- Design inspiration: https://www.figma.com/community/file/1055151140671808467
+
 ## FVM Installation
 
 https://fvm.app/docs/getting_started/installation
