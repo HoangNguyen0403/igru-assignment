@@ -22,8 +22,9 @@ class ProductWithQuantity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       height: 150.h,
       child: Row(
         children: [

@@ -1,19 +1,21 @@
-import 'package:bloc_test/bloc_test.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+// Project imports:
 import 'package:igru_assignment/repositories/products/product_repository.dart';
 import 'package:igru_assignment/ui/checkout/bloc/bloc/checkout_bloc.dart';
 import 'package:igru_assignment/ui/checkout/checkout_route.dart';
 import 'package:igru_assignment/ui/checkout/ui/checkout_screen.dart';
 import 'package:igru_assignment/ui/checkout/ui/payment_success_dialog.dart';
 import 'package:igru_assignment/ui/common/widgets/product_with_quantity_widget.dart';
-import 'package:igru_assignment/ui/home/bloc/bloc/home_bloc.dart';
-import 'package:igru_assignment/ui/home/model/category_model.dart';
 import 'package:igru_assignment/utils/di/injection.dart';
 import 'package:igru_assignment/utils/session_utils.dart';
-import 'package:mocktail/mocktail.dart';
-
 import '../../utilities/mock_utility.dart';
 import '../../utilities/test_utilitiy.dart';
 import '../../utilities/utility.dart';
@@ -23,7 +25,6 @@ void main() {
   final checkoutArgs =
       CheckoutArgs(products: Utility.mockProducts, isClearCart: true);
   final repoMock = ProductRepositoryMock();
-  final HomeBloc homeBlocMock = HomeBlocMock();
 
   setUpAll(() async {
     await Utility.mockHive("checkout");

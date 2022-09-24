@@ -19,7 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final result = await repository.getProducts(
         productType: event.productType,
-        totalItems: 5,
+        totalItems: 4,
       );
 
       final int indexCategory = categorySet
