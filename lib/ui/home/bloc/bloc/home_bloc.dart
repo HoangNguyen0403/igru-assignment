@@ -19,6 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final result = await repository.getProducts(
         productType: event.productType,
+        totalItems: 5,
       );
 
       final int indexCategory = categorySet
@@ -30,7 +31,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
         emit(ProductLoaded(categoryNew));
       } else {
-        categorySet[indexCategory].products = result;
+        categorySet[indexCategory] =
+            categorySet[indexCategory].copyWith(result);
 
         emit(ProductLoaded(categorySet[indexCategory]));
       }

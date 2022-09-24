@@ -9,7 +9,10 @@ import '../../gen/assets.gen.dart';
 import 'models/product.dart';
 
 class ProductRepository {
-  Future<List<Product>> getProducts({ProductType? productType}) async {
+  Future<List<Product>> getProducts({
+    ProductType? productType,
+    int totalItems = 9999,
+  }) async {
     final List<dynamic> response = jsonDecode(
       await rootBundle.loadString(Assets.json.productResponse),
     );
@@ -17,9 +20,11 @@ class ProductRepository {
     return response
         .map((product) => Product.fromJson(product))
         .where((product) {
-      if (productType == null) return true;
+          if (productType == null) return true;
 
-      return product.productType == productType;
-    }).toList();
+          return product.productType == productType;
+        })
+        .take(totalItems)
+        .toList();
   }
 }

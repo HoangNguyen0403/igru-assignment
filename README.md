@@ -296,3 +296,25 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - bundle exec fastlane android distribute --env dev (Development environment Distribute)
 - bundle exec fastlane ios buildIOS --env dev (Development environment)
 - bundle exec fastlane ios getProvision --env dev (Get provision development environment)
+
+## Code coverage
+
+===== On other system ===== Firstly, you have to install https://brew.sh/, then setup lcov and
+follow these command:
+
+- flutter test --coverage
+- lcov --remove coverage/lcov.info 'lib/gen/*' 'lib/utils/di/*' 'lib/utils/multi-languages/*' 'lib/utils/session_utils.dart' 'lib/database/*' 'lib/utils/shared_pref_manager.dart' 'lib/**/*.g.dart' 'lib/**/request/*' 'lib/**/response/*' 'lib/**/*state.dart' 'lib/**/*event.dart' 'lib/**/*_route.dart' -o coverage/lcov.info
+- genhtml coverage/lcov.info --output=coverage
+
+===== On Windows =====
+
+On Windows if you want to gen LCOV - code coverage report, you can follow up with these steps:
+
+- Step 1: setup chocolatey https://jcutrer.com/windows/install-chocolatey-choco-windows10
+- Step 2: setup lcov https://fredgrott.medium.com/lcov-on-windows-7c58dda07080 (when setup
+  successfully, you should reboot your pc)
+- Step 3: run this command with powershell
+    - flutter test --coverage
+    - perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\lcov --remove coverage/lcov.info 'lib/gen/*' 'lib/utils/di/*' 'lib/utils/multi-languages/*' 'lib/utils/session_utils.dart' 'lib/database/*' 'lib/utils/shared_pref_manager.dart' 'lib/**/*.g.dart' 'lib/**/request/*' 'lib/**/response/*' 'lib/**/*state.dart' 'lib/**/*event.dart' 'lib/**/*_route.dart' -o coverage/lcov.info
+    - perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml coverage/lcov.info
+      --output=coverage
