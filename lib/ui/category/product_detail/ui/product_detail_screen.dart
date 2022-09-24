@@ -63,6 +63,7 @@ class ProductDetailScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: CommonButton(
+                      key: const Key("addToCart"),
                       onTap: () {
                         SessionUtils.addProductToCart(productSelected);
                       },
@@ -77,6 +78,7 @@ class ProductDetailScreen extends StatelessWidget {
                   const SizedBox(width: 15),
                   Expanded(
                     child: CommonButton(
+                      key: const Key("checkout"),
                       onTap: () {
                         Navigator.pushNamed(
                           context,

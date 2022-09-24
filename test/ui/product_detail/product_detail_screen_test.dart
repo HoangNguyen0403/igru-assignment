@@ -1,9 +1,9 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:igru_assignment/repositories/products/models/product.dart';
 import 'package:igru_assignment/ui/category/product_detail/ui/carousel_widget.dart';
 import 'package:igru_assignment/ui/category/product_detail/ui/product_detail_screen.dart';
+import 'package:igru_assignment/ui/checkout/ui/checkout_screen.dart';
 import 'package:igru_assignment/utils/session_utils.dart';
 
 import '../../utilities/test_utilitiy.dart';
@@ -37,13 +37,7 @@ void main() {
   });
   group("Product Detail", () {
     testWidgets("Test load product with mock product", (tester) async {
-      const width = 411.4;
-      const height = 797.7;
-      tester.binding.window.devicePixelRatioTestValue = (2.625);
-      final dpi = tester.binding.window.devicePixelRatio;
-      tester.binding.window.physicalSizeTestValue =
-          Size(width * dpi, height * dpi);
-
+      Utility.setScreenForTest(tester);
       await tester.pumpWidget(
         TestWidgetWrapper(
           child: ProductDetailScreen(
@@ -63,6 +57,59 @@ void main() {
       expect(descriptionProduct, findsOneWidget);
       expect(priceProduct, findsOneWidget);
       expect(carouselWidget, findsOneWidget);
+    });
+
+    testWidgets("Test load product then add to cart", (tester) async {
+      Utility.setScreenForTest(tester);
+      await tester.pumpWidget(
+        TestWidgetWrapper(
+          child: ProductDetailScreen(
+            productSelected: mockProduct,
+          ),
+        ),
+      );
+
+      final addToCartButton = find.byKey(const Key("addToCart"));
+      await tester.tap(addToCartButton);
+
+      await tester.pump();
+
+      final cartNumber = find.byKey(const Key("cartNumber"));
+
+      expect(cartNumber, findsOneWidget);
+    });
+
+    testWidgets("Test load product then check out", (tester) async {
+      Utility.setScreenForTest(tester);
+      await tester.pumpWidget(
+        TestWidgetWrapper(
+          child: ProductDetailScreen(
+            productSelected: mockProduct,
+          ),
+        ),
+      );
+
+      final nameProduct = find.text(mockProduct.name.toUpperCase());
+      final descriptionProduct = find.text(mockProduct.description);
+      final priceProduct =
+          find.text(SessionUtils.priceDisplay(mockProduct.price));
+
+      final carouselWidget = find.byType(CarouselProduct);
+
+      expect(nameProduct, findsOneWidget);
+      expect(descriptionProduct, findsOneWidget);
+      expect(priceProduct, findsOneWidget);
+      expect(carouselWidget, findsOneWidget);
+
+      final checkoutButton = find.byKey(const Key("checkout"));
+      final checkoutScreen = find.byType(CheckoutScreen);
+
+      await tester.tap(checkoutButton);
+      await tester.pump();
+      await tester.pump();
+      Utility.setScreenForTest(tester);
+
+      expect(checkoutScreen, findsOneWidget);
     });
   });
 }

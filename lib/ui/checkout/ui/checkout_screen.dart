@@ -87,6 +87,7 @@ class CheckoutScreen extends StatelessWidget {
             ),
             SizedBox(height: 22.h),
             CommonButton(
+              key: const Key("checkout"),
               title: LocaleKeys.checkout.tr(),
               icon: Padding(
                 padding: const EdgeInsets.only(right: 24),

@@ -55,6 +55,7 @@ class PaymentSuccessDialog extends StatelessWidget {
             Assets.icons.divider.svg(),
             const Spacer(),
             CommonButton(
+              key: const Key("backToHome"),
               title: LocaleKeys.backToHome.tr().toUpperCase(),
               onTap: () {
                 if (canClearCart) {

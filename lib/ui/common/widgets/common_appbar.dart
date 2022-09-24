@@ -46,6 +46,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                       return SessionUtils.getProductFromDB().isEmpty
                           ? const SizedBox()
                           : Container(
+                            key: const Key("cartNumber"),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColors.offWhite,

@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:igru_assignment/ui/checkout/bloc/bloc/checkout_bloc.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -11,3 +12,5 @@ class ProductRepositoryMock extends Mock implements ProductRepository {}
 class HomeBlocMock extends Mock implements HomeBloc {}
 
 class PathProviderMock extends Mock implements PlatformInterface {}
+
+class CheckoutBlocMock extends Mock implements CheckoutBloc {}

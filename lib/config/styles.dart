@@ -29,13 +29,6 @@ class AppTextStyle {
     );
   }
 
-  static TextStyle get bodyS {
-    return TextStyle(
-      fontSize: 12.sp,
-      color: AppColors.bodyTextColor,
-    );
-  }
-
   static TextStyle get price {
     return TextStyle(
       fontSize: 15.sp,
