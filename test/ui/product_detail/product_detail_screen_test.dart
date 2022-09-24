@@ -1,11 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:igru_assignment/repositories/products/models/product.dart';
 import 'package:igru_assignment/ui/category/product_detail/ui/carousel_widget.dart';
 import 'package:igru_assignment/ui/category/product_detail/ui/product_detail_screen.dart';
 import 'package:igru_assignment/ui/checkout/ui/checkout_screen.dart';
 import 'package:igru_assignment/utils/session_utils.dart';
-
 import '../../utilities/test_utilitiy.dart';
 import '../../utilities/utility.dart';
 

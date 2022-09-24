@@ -40,20 +40,25 @@ class CheckoutScreen extends StatelessWidget {
             Assets.icons.divider.svg(),
             const DeliveryAddressSection(),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (context, index) => ProductWithQuantity(
-                  product: args.products[index],
-                  onUpdateQuantity: (quantity) {
-                    context.read<CheckoutBloc>().add(
-                          ChangeQuantityPressed(
-                            quantity,
-                            args.products[index].id,
-                          ),
-                        );
-                  },
-                ),
-                itemCount: args.products.length,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CustomScrollView(
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) => ProductWithQuantity(
+                        product: args.products[index],
+                        onUpdateQuantity: (quantity) {
+                          context.read<CheckoutBloc>().add(
+                                ChangeQuantityPressed(
+                                  quantity,
+                                  args.products[index].id,
+                                ),
+                              );
+                        },
+                      ),
+                      childCount: args.products.length,
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(

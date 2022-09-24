@@ -94,8 +94,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     buildWhen: (_, current) => current is ProductLoaded,
                     builder: (context, state) {
                       if (state is ProductLoaded) {
-                        return ProductGridView(
-                          products: state.categoryModel.products,
+                        return CustomScrollView(
+                          slivers: [
+                            ProductGridView(
+                              products: state.categoryModel.products,
+                            ),
+                          ],
                         );
                       }
 

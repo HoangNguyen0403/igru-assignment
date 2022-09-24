@@ -34,31 +34,37 @@ class CartScreen extends StatelessWidget {
 
               return Column(
                 children: [
+                  const SizedBox(height: 20),
                   Expanded(
-                    child: ListView.separated(
-                      itemBuilder: (context, index) => Dismissible(
-                        key: Key(state.products[index].id.toString()),
-                        onDismissed: ((direction) {
-                          context.read<CartBloc>().add(DismissProduct(index));
-                        }),
-                        direction: DismissDirection.endToStart,
-                        background: Container(color: Colors.red),
-                        child: ProductWithQuantity(
-                          product: state.products[index],
-                          onUpdateQuantity: (quantity) {
-                            context.read<CartBloc>().add(
-                                  ChangeQuantityPressed(
-                                    quantity,
-                                    state.products[index].id,
-                                  ),
-                                );
-                          },
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => Dismissible(
+                              key: Key(state.products[index].id.toString()),
+                              onDismissed: ((direction) {
+                                context
+                                    .read<CartBloc>()
+                                    .add(DismissProduct(index));
+                              }),
+                              direction: DismissDirection.endToStart,
+                              background: Container(color: Colors.red),
+                              child: ProductWithQuantity(
+                                product: state.products[index],
+                                onUpdateQuantity: (quantity) {
+                                  context.read<CartBloc>().add(
+                                        ChangeQuantityPressed(
+                                          quantity,
+                                          state.products[index].id,
+                                        ),
+                                      );
+                                },
+                              ),
+                            ),
+                            childCount: state.products.length,
+                          ),
                         ),
-                      ),
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 15),
-                      itemCount: state.products.length,
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                      ],
                     ),
                   ),
                   const Padding(

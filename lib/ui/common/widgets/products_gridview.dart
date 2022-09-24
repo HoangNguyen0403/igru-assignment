@@ -20,17 +20,18 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+    return SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: SessionUtils.isMobile ? 2 : 3,
         mainAxisSpacing: 12.h,
         crossAxisSpacing: 12.w,
         mainAxisExtent: 240.h,
       ),
-      itemCount: products.length,
-      itemBuilder: (context, index) => ProductCard(
-        product: products[index],
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) => ProductCard(
+          product: products[index],
+        ),
+        childCount: products.length,
       ),
     );
   }

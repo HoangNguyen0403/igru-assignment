@@ -36,9 +36,12 @@ class CategoryListScreen extends StatelessWidget {
               builder: (_, state) {
                 if (state is CategoryProductLoaded) {
                   return Expanded(
-                    child: ProductGridView(
-                      products: state.products,
-                      displayFavorite: true,
+                    child: CustomScrollView(
+                      slivers: [
+                        ProductGridView(
+                          products: state.products,
+                        ),
+                      ],
                     ),
                   );
                 }

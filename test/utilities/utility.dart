@@ -1,12 +1,15 @@
+// Dart imports:
 import 'dart:ui';
 
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+
+// Project imports:
 import 'package:igru_assignment/database/hive_manager.dart';
 import 'package:igru_assignment/repositories/products/models/product.dart';
 import 'package:igru_assignment/utils/di/injection.dart';
-import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
-
 import 'path_provider_mock.dart';
 
 class Utility {
