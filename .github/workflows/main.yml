@@ -1,0 +1,31 @@
+name: Analyze code and build android
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+        flutter-version: '3.0.0'
+
+      - run: flutter doctor -v
+      - name: Run analyze
+      run: |
+         chmod +x ./scripts/.code_analyze.sh
+         ./scripts/.code_analyze.sh
+      shell: bash
+      - name: Run test
+      run: flutter test --coverage
+      - name: Build android
+      run: flutter build apk
+      
