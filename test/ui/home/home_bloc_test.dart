@@ -40,7 +40,7 @@ void main() {
             .take(5)
             .toList();
 
-        when(() => repoMock.getProducts(totalItems: 5))
+        when(() => repoMock.getProducts(totalItems: 4))
             .thenAnswer((invocation) async => products);
       },
       expect: () => [
@@ -70,7 +70,7 @@ void main() {
 
         when(
           () => repoMock.getProducts(
-            totalItems: 5,
+            totalItems: 4,
             productType: mockProductType,
           ),
         ).thenAnswer((invocation) async => products);
@@ -107,7 +107,7 @@ void main() {
 
         when(
           () => repoMock.getProducts(
-            totalItems: 5,
+            totalItems: 4,
             productType: mockProductType,
           ),
         ).thenAnswer((invocation) async => products);
