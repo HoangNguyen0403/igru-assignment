@@ -107,9 +107,6 @@ project
 |--.gitlab-ci.yml                                    # config ci/cd for gitlab
 |--pubspec.yaml                                      # dart package management file, add new dependencies here
 |--.setup_app.sh                                     # Script to set up app before run app
-|--.setup_env_config.sh                              # Script to set up environment variable to display on ci/cd
-|--.setup_fastlane.sh                                # Script to set up fastlane config before run ci/cd
-|--..build_android.sh                                # Script to build android on local
 
 ```
 
@@ -156,26 +153,6 @@ For non widget usage, manually inject the object on initialization.
 
 We are using [Easy Localization](https://pub.dev/packages/easy_localization) to handle
 multi-languages. 
-Using [Google Sheet Generator](https://github.com/Hoang-Nguyenn/easy_localization_generator) on
-cloud will take less effort for change and update key and value. Only need update in google sheet
-file. (Using only one way, csv or json)
-
-Google sheet sample on this project :
-"https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
-
-Step to set-up google sheet :
-
-- 1 : Create a CSV Google Sheet with form like that form
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE/edit#gid=1013756643"
-- 2 : Enable share for anyone have this link
-- 3 : on file locale_keys.dart in lib/utils/multi-languages/locale_keys.dart change docId annotation
-  with your google sheet docid Example of DocID is :
-  "https://docs.google.com/spreadsheets/d/1SpiJWFRfJaIRnzpEc0mJ2WaaI9JYlz8jKBPduAPzdXE (it's docId)
-  /edit#gid=1013756643"
-- 4 : run terminal : "flutter pub run build_runner build" to generate .g.dart localization file
-- 5 : When update new value on google sheet should update plus one version on SheetLocalization at
-  locale_keys.dart and run "flutter packages pub run build_runner build" again to get new file csv
-
 Step to setup json file in project :
 
 - 1 : Add key and value in json file at assets/translations/
@@ -228,21 +205,6 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - Delete assets from `assets/<asset types>`
 - Run `flutter pub run build_runner build` in console
 - `lib/gen/assets` will be updated with currently available assets.
-
-## How to change version number and version code :
-
-- Go to pubspec.yaml => line version to change :
-- Example : 1.0.10+3 => Version name : 1.0.10, Version code : 3
-
-## Using fastlane
-
-- Require JAVAHOME (JDK 11 https://www.oracle.com/java/technologies/downloads/#java11-mac)
-- Install Ruby (https://docs.fastlane.tools/)
-- run script .setup_fastlane.sh (First time run)
-- bundle exec fastlane android buildAndroid --env dev (Development environment)
-- bundle exec fastlane android distribute --env dev (Development environment Distribute)
-- bundle exec fastlane ios buildIOS --env dev (Development environment)
-- bundle exec fastlane ios getProvision --env dev (Get provision development environment)
 
 ## Code coverage
 
