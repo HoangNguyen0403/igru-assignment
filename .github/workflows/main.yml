@@ -22,7 +22,7 @@ jobs:
       - run: flutter doctor -v
       - run: |
          chmod +x ./.setup_app.sh
-         ./scripts/.setup_app.sh
+         ./.setup_app.sh
       - run: |
          chmod +x ./scripts/.code_analyze.sh
          ./scripts/.code_analyze.sh
