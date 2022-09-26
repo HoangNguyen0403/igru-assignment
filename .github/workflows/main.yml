@@ -19,13 +19,10 @@ jobs:
         flutter-version: '3.0.0'
 
       - run: flutter doctor -v
-      - name: Run analyze
-      run: |
+      - run: |
          chmod +x ./scripts/.code_analyze.sh
          ./scripts/.code_analyze.sh
-      shell: bash
-      - name: Run test
-      run: flutter test --coverage
-      - name: Build android
-      run: flutter build apk
+        shell: bash
+      - run: flutter test --coverage
+      - run: flutter build apk
       
